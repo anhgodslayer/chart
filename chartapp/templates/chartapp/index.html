@@ -1,0 +1,43 @@
+ {% extends 'partial/base.html' %} 
+
+ {% block content %}
+ <h2> Index page </h2>
+ <div class="row mt-2"> 
+    <div class="col-md-4"> 
+        <h3>Appdata</h3>
+    <hr>
+    </div>
+    <div class="col-md-8">
+        <div>
+            <canvas id="myChart"></canvas>
+          </div>
+          
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          
+          <script>
+            const ctx = document.getElementById('myChart');
+          
+            new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: ['ZoneH', 'MISP', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                  label: '# of chart',
+                  data: [12, 19, 3, 5, 2, 3],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          </script>
+          
+    </div>
+ </div>
+
+ {% endblock %}
