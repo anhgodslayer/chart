@@ -1,29 +1,93 @@
  {% extends 'partial/base.html' %} 
 
  {% block content %}
+ <style>
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  .chartMenu {
+    width: 100vw;
+    height: 40px;
+    background: #1A1A1A;
+    color: rgba(54, 162, 235, 1);
+  }
+  .chartMenu p {
+    padding: 10px;
+    font-size: 20px;
+  }
+  .chartCard {
+    width: 100vw;
+    height: calc(100vh - 40px);
+    background: rgba(54, 162, 235, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chartBox {
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgba(54, 162, 235, 1);
+    background: white;
+    
+  }
+</style>
+
  <h2> Index page </h2>
- <div class="row mt-2"> 
-    <div class="col-md-4"> 
-        <h3>Appdata</h3>
-    <hr>
-    </div>
-    <div class="col-md-8">
-        <div>
-            <canvas id="myChart"></canvas>
-          </div>
+ <div class="row mt-2" > 
+    <div   > 
+    <div >
+      <div class="chartCard">
+        <div class="chartBox" style="height: 400px ;">
+          <canvas id="piechart"></canvas>
+        </div>
+        <div class="chartBox"  style="height: 400px;">
+          <canvas id="myChart" ></canvas>
+        </div>
+      </div>
+     
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <script>
+        const ctx = document.getElementById('piechart');
+      
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['ZoneH', 'MISP'],
+            datasets: [{
+              label: '# of chart',
+              data: [ '{{zoneH}}',10],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      </script>
+    
+    
+        
           
           <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           
           <script>
-            const ctx = document.getElementById('myChart');
+            const anx = document.getElementById('myChart');
           
-            new Chart(ctx, {
+            new Chart(anx, {
               type: 'bar',
               data: {
-                labels: ['ZoneH', 'MISP', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['ZoneH', 'MISP'],
                 datasets: [{
                   label: '# of chart',
-                  data: [12, 19, 3, 5, 2, 3],
+                  data: [ '{{zoneH}}',10],
                   borderWidth: 1
                 }]
               },
@@ -38,6 +102,9 @@
           </script>
           
     </div>
+    
  </div>
+ 
 
+ 
  {% endblock %}
